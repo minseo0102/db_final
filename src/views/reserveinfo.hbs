@@ -1,0 +1,265 @@
+<!--
+ Copyright 2022 kms
+ 
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ 
+     http://www.apache.org/licenses/LICENSE-2.0
+ 
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+-->
+
+<head>
+  <link rel="stylesheet" type="text/css" href="reserveinfo.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <script>
+    const logout = () => {window.location.href="http://localhost:3000/logout"};
+    const reserve = () => {window.location.href="http://localhost:3000/reserve"};
+    const reserveinfo = () => {window.location.href="http://localhost:3000/reserveinfo"}; 
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <span class="logo-text">CAR DEALER</span>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title"> 원하는 자동차를 쉽게 예약하는 곳 CAR-DEALER!
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">{{user}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+    <div class="side-menu">
+      <div class="side-menu_list" onclick="reserve()">
+        <span>예약하기</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="reserveinfo()">
+        <span>예약 조회 및 취소</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <span class="main-top_title">나의 예약 내역 조회 및 취소</span>
+    <p class="sTitle"> <span>회원 ID : {{user}}</span></p>
+     <div class="main-top">
+      <span class="main-top_title">CAR</span>
+       <div class="main-top_table">
+        <table>
+        <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =15%;">차대번호</th>
+            <th scope="col" , style="width: =15%;">가격</th>
+            <th scope="col" , style="width: =5%;">모델</th>
+            <th scope="col" , style="width: =5%;">색상</th>
+            <th scope="col" , style="width: =5%;">연료</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">연비</th>
+            <th scope="col" , style="width: =5%;">인승</th>
+            <th scope="col" , style="width: =5%;">최대 속도</th>
+            <th scope="col" , style="width: =5%;">배기량</th>
+            <th scope="col" , style="width: =5%;">판매자</th>
+            <th scope="col" , style="width: =5%;">예약날짜</th>
+            <th scope="col" , style="width: =10%;">예약취소</th>
+        </tr>
+         {{#myCarInfo}}
+          <form method="post">
+           <tr>
+             <td>{{vin}}</td>
+             <td>{{price}}원</td>
+             <td>{{model}}</td>
+             <td>{{color}}</td>
+             <td>{{fuel}}</td>
+             <td>{{brand}}</td>
+             <td>{{fuel_efficiency}}</td>
+             <td>{{no_seats}}인승</td>
+             <td>{{max_speed}}km/h</td>
+             <td>{{engine_size}}cc</td>
+             <td>{{sid}}</td>
+             <td>{{date}}</td>
+             <td>
+                <button
+                 style="margin-left: 10px;"
+                 name="cancelBtn"
+                 type="submit"
+                 class="cancelBtn"
+                 value="{{vin}}"
+                 formaction="/reserveinfo"
+                 >
+                 예약취소
+                </button></td>
+           </tr>
+          </form>
+         {{/myCarInfo}}
+        </table>
+       </div>
+     </div>
+
+     <div class="main-top">
+      <span class="main-top_title">TRUCK</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+                <th scope="col" , style="width: =15%;">차대번호</th>
+                <th scope="col" , style="width: =15%;">가격</th>
+                <th scope="col" , style="width: =5%;">모델</th>
+                <th scope="col" , style="width: =5%;">색상</th>
+                <th scope="col" , style="width: =10%;">연료</th>
+                <th scope="col" , style="width: =10%;">브랜드</th>
+                <th scope="col" , style="width: =10%;">연비</th>
+                <th scope="col" , style="width: =5%;">축 수</th>
+                <th scope="col" , style="width: =5%;">톤 수</th>
+                <th scope="col" , style="width: =5%;">판매자</th>
+                <th scope="col" , style="width: =5%;">예약날짜</th>
+                <th scope="col" , style="width: =10%;">예약취소</th>
+          </tr>
+          {{#myTruckInfo}}
+           <form method="post">
+            <tr>
+             <td>{{vin}}</td>
+             <td>{{price}}원</td>
+             <td>{{model}}</td>
+             <td>{{color}}</td>
+             <td>{{fuel}}</td>
+             <td>{{brand}}</td>
+             <td>{{fuel_efficiency}}</td>
+             <td>{{no_of_axles}}</td>
+             <td>{{tonnage}}톤</td>
+             <td>{{sid}}</td>
+             <td>{{date}}</td>
+             <td>
+                <button
+                    style="margin-left: 10px;"
+                    name="cancelBtn"
+                    type="submit"
+                    class="cancelBtn"
+                    value="{{vin}}"
+                    formaction="/reserveinfo"
+                >
+                예약취소
+                </button></td>
+            </tr>
+           </form>
+          {{/myTruckInfo}}
+          </table>
+        </div>
+    </div>
+
+    <div class="main-top">
+      <span class="main-top_title">SUV</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =15%;">차대번호</th>
+            <th scope="col" , style="width: =15%;">가격</th>
+            <th scope="col" , style="width: =5%;">모델</th>
+            <th scope="col" , style="width: =5%;">색상</th>
+            <th scope="col" , style="width: =10%;">연료</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">연비</th>
+            <th scope="col" , style="width: =5%;">인승</th>
+            <th scope="col" , style="width: =5%;">크기</th>
+            <th scope="col" , style="width: =5%;">판매자</th>
+            <th scope="col" , style="width: =5%;">예약날짜</th>
+            <th scope="col" , style="width: =10%;">예약취소</th>
+          </tr>
+            {{#mySuvInfo}}
+             <form method="post">
+                <tr>
+                    <td>{{vin}}</td>
+                    <td>{{price}}원</td>
+                    <td>{{model}}</td>
+                    <td>{{color}}</td>
+                    <td>{{fuel}}</td>
+                    <td>{{brand}}</td>
+                    <td>{{fuel_efficiency}}</td>
+                    <td>{{no_seats}}인승</td>
+                    <td>{{size}}</td>
+                    <td>{{sid}}</td>
+                    <td>{{date}}</td>
+                    <td>
+                      <button
+                        style="margin-left: 10px;"
+                        name="cancelBtn"
+                        type="submit"
+                        class="cancelBtn"
+                        value="{{vin}}"
+                        formaction="/reserveinfo"
+                      >
+                        예약취소
+                      </button></td>
+                </tr>
+             </form>
+            {{/mySuvInfo}}
+          </table>
+        </div>
+    </div>
+
+    <div class="main-top">
+      <span class="main-top_title">BUS</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =15%;">차대번호</th>
+            <th scope="col" , style="width: =15%;">가격</th>
+            <th scope="col" , style="width: =5%;">모델</th>
+            <th scope="col" , style="width: =5%;">색상</th>
+            <th scope="col" , style="width: =5%;">연료</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">연비</th>
+            <th scope="col" , style="width: =5%;">인승</th>
+            <th scope="col" , style="width: =5%;">크기</th>
+            <th scope="col" , style="width: =5%;">층수</th>
+            <th scope="col" , style="width: =5%;">판매자</th>
+            <th scope="col" , style="width: =5%;">예약날짜</th>
+            <th scope="col" , style="width: =10%;">예약취소</th>
+          </tr>
+            {{#myBusInfo}}
+              <form method="post">
+                  <tr>
+                    <td>{{vin}}</td>
+                    <td>{{price}}원</td>
+                    <td>{{model}}</td>
+                    <td>{{color}}</td>
+                    <td>{{fuel}}</td>
+                    <td>{{brand}}</td>
+                    <td>{{fuel_efficiency}}</td>
+                    <td>{{no_seats}}인승</td>
+                    <td>{{size}}</td>
+                    <td>{{layer}}층</td>
+                    <td>{{sid}}</td>
+                    <td>{{date}}</td>
+                    <td>
+                      <button
+                        style="margin-left: 10px;"
+                        name="cancelBtn"
+                        type="submit"
+                        class="cancelBtn"
+                        value="{{vin}}"
+                        formaction="/reserveinfo"
+                      >
+                        예약취소
+                      </button></td>
+                  </tr>
+              </form>
+            {{/myBusInfo}}
+          </table>
+        </div>
+    </div>
+  </div>
+</div>

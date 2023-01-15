@@ -1,0 +1,312 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="salesinfo.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <script>
+    const logout = () => {window.location.href="http://localhost:3000/logout"};
+    const salesinfo = () => {window.location.href="http://localhost:3000/salesinfo"};
+    const insert = () => {window.location.href="http://localhost:3000/insert"};
+    const update = () => {window.location.href="http://localhost:3000/update"};
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <span class="logo-text">CAR DEALER</span>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title"> 원하는 자동차를 쉽게 예약하는 곳 CAR-DEALER!
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">{{admin}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+    <div class="side-menu">
+      <div class="side-menu_list" onclick="salesinfo()">
+        <span>예약 정보</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="insert()">
+        <span>차량 정보 입력</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="update()">
+        <span>차량 정보 수정 및 삭제</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <span class="main-top_title">차량 예약 및 판매 현황 조회</span>
+    <p class="sTitle"> <span>관리자 ID : {{admin}}</span></p>
+     <div class="main-top">
+      <span class="main-top_title">CAR</span>
+       <div class="main-top_table">
+        <table>
+        <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =10%;">차대번호</th>
+            <th scope="col" , style="width: =10%;">모델</th>
+            <th scope="col" , style="width: =10%;">색상</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">인승</th>
+            <th scope="col" , style="width: =10%;">판매자</th>
+            <th scope="col" , style="width: =10%;">고 객</th>
+            <th scope="col" , style="width: =10%;">예약날짜</th>
+            <th scope="col" , style="width: =10%;">내역 수정</th>
+            <th scope="col" , style="width: =10%;">판매 상태</th>
+        </tr>
+         {{#reservCar}}
+          <form method="post">
+           <tr>
+             <td>{{vin}}</td>
+             <td>{{model}}</td>
+             <td>{{color}}</td>
+             <td>{{brand}}</td>
+             <td>{{no_seats}}인승</td>
+             <td><input type="text" name="sid" placeholder={{sid}}></td>
+             <td><input type="text" name="ssn" placeholder={{ssn}}></td>
+             <td><input type="date" name="date" placeholder={{date}}></td>
+             <td>
+                <button
+                 style="margin-left: 10px;"
+                 name="rsvupdateBtn"
+                 type="submit"
+                 class="rsvupdateBtn"
+                 value="{{vin}}"
+                 formaction="/salesinfo"
+                 >
+                 수정
+                </button></td>
+             <td>
+                <button
+                 style="margin-left: 10px;"
+                 name="soldoutBtn"
+                 type="submit"
+                 class="soldoutBtn"
+                 value="{{vin}}"
+                 formaction="/salesinfo"
+                 >
+                 완료
+                </button>
+                <button
+                 style="margin-left: 10px;"
+                 name="salefailBtn"
+                 type="submit"
+                 class="salefailBtn"
+                 value="{{vin}}"
+                 formaction="/salesinfo"
+                 >
+                 실패
+                </button></td>
+           </tr>
+          </form>
+         {{/reservCar}}
+        </table>
+       </div>
+     </div>
+
+     <div class="main-top">
+      <span class="main-top_title">TRUCK</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+                <th scope="col" , style="width: =10%;">차대번호</th>
+                <th scope="col" , style="width: =10%;">모델</th>
+                <th scope="col" , style="width: =10%;">색상</th>
+                <th scope="col" , style="width: =10%;">브랜드</th>
+                <th scope="col" , style="width: =10%;">판매자</th>
+                <th scope="col" , style="width: =10%;">고 객</th>
+                <th scope="col" , style="width: =10%;">예약날짜</th>
+                <th scope="col" , style="width: =10%;">내역 수정</th>
+                <th scope="col" , style="width: =10%;">판매 상태</th>
+          </tr>
+          {{#reservTruck}}
+           <form method="post">
+            <tr>
+             <td>{{vin}}</td>
+             <td>{{model}}</td>
+             <td>{{color}}</td>
+             <td>{{brand}}</td>
+             <td><input type="text" name="sid" placeholder={{sid}}></td>
+             <td><input type="text" name="ssn" placeholder={{ssn}}></td>
+             <td><input type="date" name="date" placeholder={{date}}></td>
+             <td>
+                <button
+                    style="margin-left: 10px;"
+                    name="rsvupdateBtn"
+                    type="submit"
+                    class="rsvupdateBtn"
+                    value="{{vin}}"
+                    formaction="/salesinfo"
+                >
+                수정
+                </button></td>
+             <td>
+                <button
+                 style="margin-left: 10px;"
+                 name="soldoutBtn"
+                 type="submit"
+                 class="soldoutBtn"
+                 value="{{vin}}"
+                 formaction="/salesinfo"
+                 >
+                 완료
+                </button>
+                <button
+                 style="margin-left: 10px;"
+                 name="salefailBtn"
+                 type="submit"
+                 class="salefailBtn"
+                 value="{{vin}}"
+                 formaction="/salesinfo"
+                 >
+                 실패
+                </button></td>
+            </tr>
+           </form>
+          {{/reservTruck}}
+          </table>
+        </div>
+    </div>
+
+    <div class="main-top">
+      <span class="main-top_title">SUV</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =10%;">차대번호</th>
+            <th scope="col" , style="width: =10;">모델</th>
+            <th scope="col" , style="width: =10%;">색상</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">인승</th>
+            <th scope="col" , style="width: =10%;">판매자</th>
+            <th scope="col" , style="width: =10%;">고 객</th>
+            <th scope="col" , style="width: =10%;">예약날짜</th>
+            <th scope="col" , style="width: =10%;">내역 수정</th>
+            <th scope="col" , style="width: =10%;">판매 상태</th>
+          </tr>
+            {{#reservSuv}}
+             <form method="post">
+                <tr>
+                    <td>{{vin}}</td>
+                    <td>{{model}}</td>
+                    <td>{{color}}</td>
+                    <td>{{brand}}</td>
+                    <td>{{no_seats}}인승</td>
+                    <td><input type="text" name="sid" placeholder={{sid}}></td>
+                    <td><input type="text" name="ssn" placeholder={{ssn}}></td>
+                    <td><input type="date" name="date" placeholder={{date}}></td>
+                    <td>
+                      <button
+                        style="margin-left: 10px;"
+                        name="rsvupdateBtn"
+                        type="submit"
+                        class="rsvupdateBtn"
+                        value="{{vin}}"
+                        formaction="/salesinfo"
+                      >
+                        수정
+                      </button></td>
+                    <td>
+                      <button
+                        style="margin-left: 10px;"
+                        name="soldoutBtn"
+                        type="submit"
+                        class="soldoutBtn"
+                        value="{{vin}}"
+                        formaction="/salesinfo"
+                      >
+                        완료
+                      </button>
+                       <button
+                        style="margin-left: 10px;"
+                        name="salefailBtn"
+                        type="submit"
+                        class="salefailBtn"
+                        value="{{vin}}"
+                        formaction="/salesinfo"
+                      >
+                        실패
+                      </button></td>
+                </tr>
+             </form>
+            {{/reservSuv}}
+          </table>
+        </div>
+    </div>
+
+    <div class="main-top">
+      <span class="main-top_title">BUS</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =10%;">차대번호</th>
+            <th scope="col" , style="width: =10%;">모델</th>
+            <th scope="col" , style="width: =10%;">색상</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">인승</th>
+            <th scope="col" , style="width: =10%;">판매자</th>
+            <th scope="col" , style="width: =10%;">고 객</th>
+            <th scope="col" , style="width: =10%;">예약날짜</th>
+            <th scope="col" , style="width: =10%;">내역 수정</th>
+            <th scope="col" , style="width: =10%;">판매 상태</th>
+          </tr>
+            {{#reservBus}}
+              <form method="post">
+                  <tr>
+                    <td>{{vin}}</td>
+                    <td>{{model}}</td>
+                    <td>{{color}}</td>
+                    <td>{{brand}}</td>
+                    <td>{{no_seats}}인승</td>
+                    <td><input type="text" name="sid" placeholder={{sid}}></td>
+                    <td><input type="text" name="ssn" placeholder={{ssn}}></td>
+                    <td><input type="date" name="date" placeholder={{date}}></td>
+                    <td>
+                      <button
+                        style="margin-left: 10px;"
+                        name="rsvupdateBtn"
+                        type="submit"
+                        class="rsvupdateBtn"
+                        value="{{vin}}"
+                        formaction="/salesinfo"
+                      >
+                        수정
+                      </button></td>
+                    <td>
+                      <button
+                        style="margin-left: 10px;"
+                        name="soldoutBtn"
+                        type="submit"
+                        class="soldoutBtn"
+                        value="{{vin}}"
+                        formaction="/salesinfo"
+                      >
+                        완료
+                      </button>
+                        <button
+                        style="margin-left: 10px;"
+                        name="salefailBtn"
+                        type="submit"
+                        class="salefailBtn"
+                        value="{{vin}}"
+                        formaction="/salesinfo"
+                        >
+                        실패
+                        </button></td>
+                  </tr>
+              </form>
+            {{/reservBus}}
+          </table>
+        </div>
+    </div>
+  </div>
+</div>

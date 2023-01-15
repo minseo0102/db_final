@@ -1,0 +1,199 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="insert.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <script>
+    const logout = () => {window.location.href="http://localhost:3000/logout"};
+    const salesinfo = () => {window.location.href="http://localhost:3000/salesinfo"};
+    const insert = () => {window.location.href="http://localhost:3000/insert"};
+    const update = () => {window.location.href="http://localhost:3000/update"};
+  </script>
+</head>
+<div class="header">
+  <div class="header-logo">
+    <span class="logo-text">CAR DEALER</span>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title"> 원하는 자동차를 쉽게 예약하는 곳 CAR-DEALER!
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">{{admin}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+    <div class="side-menu">
+      <div class="side-menu_list" onclick="salesinfo()">
+        <span>예약 정보</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="insert()">
+        <span>차량 정보 입력</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="update()">
+        <span>차량 정보 수정 및 삭제</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <span class="main-top_title">차량 정보 입력</span>
+    <p class="sTitle"> <span>관리자 ID : {{admin}}</span></p>
+     <div class="main-top">
+      <span class="main-top_title">CAR</span>
+       <div class="main-top_table">
+        <table>
+        <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =10%;">차대번호</th>
+            <th scope="col" , style="width: =10%;">가격</th>
+            <th scope="col" , style="width: =10%;">모델</th>
+            <th scope="col" , style="width: =10%;">색상</th>
+            <th scope="col" , style="width: =10%;">연료</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">연비</th>
+            <th scope="col" , style="width: =10%;">인승</th>
+            <th scope="col" , style="width: =10%;">최대속도</th>
+            <th scope="col" , style="width: =10%;">배기량</th>
+            <th scope="col" , style="width: =10%;">판매자</th>
+            <th scope="col" , style="width: =10%;">입력</th>
+        </tr>
+          <form method="post">
+           <tr>
+              <td><input type="text" id="Vin_car" name="Vin_car" placeholder="차대번호"/></td>
+              <td><input type="text" id="Price_car" name="Price_car" placeholder="가격"/></td>
+              <td><input type="text" id="Model_car" name="Model_car" placeholder="모델"/></td>
+              <td><input type="text" id="Color_car" name="Color_car" placeholder="색상"/></td>
+              <td><input type="text" id="Fuel_car" name="Fuel_car" placeholder="연료"/></td>
+              <td><input type="text" id ="Brand_car" name="Brand_car" placeholder="브랜드"/></td>
+              <td><input type="text" id ="Fuel_efficiency_car" name="Fuel_efficiency_car" placeholder="연비" /></td>
+              <td><input type="text" id ="No_seats_car" name="No_seats_car" placeholder="인승"/></td>
+              <td><input type="text" id ="Max_speed_car" name="Max_speed_car" placeholder="최대속도"/></td>
+              <td><input type="text" id ="Engine_size_car"name="Engine_size_car" placeholder="배기량"/></td>
+              <td><input type="text" id="Sid_car" name="Sid_car" placeholder="판매자"/></td>
+              <td><input type="submit" value="입력" formaction="/insert"/></td>
+
+            </tr>
+           </form>
+        </table>
+       </div>
+    </div>
+
+    <div class="main-top">
+      <span class="main-top_title">TRUCK</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =10%;">차대번호</th>
+            <th scope="col" , style="width: =10%;">가격</th>
+            <th scope="col" , style="width: =10%;">모델</th>
+            <th scope="col" , style="width: =5%;">색상</th>
+            <th scope="col" , style="width: =5%;">연료</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">연비</th>
+            <th scope="col" , style="width: =10%;">축 수</th>
+            <th scope="col" , style="width: =10%;">톤 수</th>
+            <th scope="col" , style="width: =10%;">판매자</th>
+            <th scope="col" , style="width: =10%;">입력</th>
+          </tr>
+              <form method="post">
+                  <tr>
+                    <td><input type="text" id="Vin_truck" name="Vin_truck" placeholder="차대번호"/></td>
+                    <td><input type="text" id="Price_truck" name="Price_truck" placeholder="가격"/></td>
+                    <td><input type="text" id="Model_truck" name="Model_truck" placeholder="모델"/></td>
+                    <td><input type="text" id="Color_truck" name="Color_truck" placeholder="색상"/></td>
+                    <td><input type="text" id="Fuel_truck" name="Fuel_truck" placeholder="연료"/></td>
+                    <td><input type="text" id ="Brand_truck" name="Brand_truck" placeholder="브랜드"/></td>
+                    <td><input type="text" id ="Fuel_efficiency_truck" name="Fuel_efficiency_truck" placeholder="연비" /></td>
+                    <td><input type="text" id ="No_of_axles_truck" name="No_of_axles_truck" placeholder="축 수"/></td>
+                    <td><input type="text" id ="Tonnage_truck" name="Tonnage_truck" placeholder="톤 수"/></td>
+                    <td><input type="text" id="Sid_truck" name="Sid_truck" placeholder="판매자"/></td>
+                    <td><input type="submit" value="입력" formaction="/insert"/></td>
+                  </tr>
+              </form>
+          </table>
+        </div>
+    </div>
+
+    <div class="main-top">
+      <span class="main-top_title">SUV</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =10%;">차대번호</th>
+            <th scope="col" , style="width: =10%;">가격</th>
+            <th scope="col" , style="width: =10%;">모델</th>
+            <th scope="col" , style="width: =10%;">색상</th>
+            <th scope="col" , style="width: =10%;">연료</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">연비</th>
+            <th scope="col" , style="width: =10%;">인승</th>
+            <th scope="col" , style="width: =10%;">크기</th>
+            <th scope="col" , style="width: =10%;">판매자</th>
+            <th scope="col" , style="width: =10%;">입력</th>
+          </tr>
+              <form method="post">
+                  <tr>
+                    <td><input type="text" id="Vin_suv" name="Vin_suv" placeholder="차대번호"/></td>
+                    <td><input type="text" id="Price_suv" name="Price_suv" placeholder="가격"/></td>
+                    <td><input type="text" id="Model_suv" name="Model_suv" placeholder="모델"/></td>
+                    <td><input type="text" id="Color_suv" name="Color_suv" placeholder="색상"/></td>
+                    <td><input type="text" id="Fuel_suv" name="Fuel_suv" placeholder="연료"/></td>
+                    <td><input type="text" id ="Brand_suv" name="Brand_suv" placeholder="브랜드"/></td>
+                    <td><input type="text" id ="Fuel_efficiency_suv" name="Fuel_efficiency_suv" placeholder="연비" /></td>
+                    <td><input type="text" id ="No_seats_suv" name="No_seats_suv" placeholder="인승"/></td>
+                    <td><input type="text" id ="Size_suv" name="Size_suv" placeholder="크기"/></td>
+                    <td><input type="text" id="Sid_suv" name="Sid_suv" placeholder="판매자"/></td>
+                    <td><input type="submit" value="입력" formaction="/insert"/></td>
+                  </tr>
+              </form>
+          </table>
+        </div>
+    </div>
+
+    <div class="main-top">
+      <span class="main-top_title">BUS</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =10%;">차대번호</th>
+            <th scope="col" , style="width: =10%;">가격</th>
+            <th scope="col" , style="width: =10%;">모델</th>
+            <th scope="col" , style="width: =5%;">색상</th>
+            <th scope="col" , style="width: =5%;">연료</th>
+            <th scope="col" , style="width: =5%;">브랜드</th>
+            <th scope="col" , style="width: =5%;">연비</th>
+            <th scope="col" , style="width: =10%;">인승</th>
+            <th scope="col" , style="width: =10%;">크기</th>
+            <th scope="col" , style="width: =10%;">층수</th>
+            <th scope="col" , style="width: =10%;">판매자</th>
+            <th scope="col" , style="width: =10%;">입력</th>
+          </tr>
+              <form method="post">
+                  <tr>
+                    <td><input type="text" id="Vin_bus" name="Vin_bus" placeholder="차대번호"/></td>
+                    <td><input type="text" id="Price_bus" name="Price_bus" placeholder="가격"/></td>
+                    <td><input type="text" id="Model_bus" name="Model_bus" placeholder="모델"/></td>
+                    <td><input type="text" id="Color_bus" name="Color_bus" placeholder="색상"/></td>
+                    <td><input type="text" id="Fuel_bus" name="Fuel_bus" placeholder="연료"/></td>
+                    <td><input type="text" id ="Brand_bus" name="Brand_bus" placeholder="브랜드"/></td>
+                    <td><input type="text" id ="Fuel_efficiency_bus" name="Fuel_efficiency_bus" placeholder="연비" /></td>
+                    <td><input type="text" id ="No_seats_bus" name="No_seats_bus" placeholder="인승"/></td>
+                    <td><input type="text" id ="Size_bus" name="Size_bus" placeholder="크기"/></td>
+                    <td><input type="text" id ="Layer_bus" name="Layer_bus" placeholder="층수"/></td>
+                    <td><input type="text" id="Sid_bus" name="Sid_bus" placeholder="판매자"/></td>
+                    <td><input type="submit" value="입력" formaction="/insert"/></td>
+                  </tr>
+              </form>
+          </table>
+        </div>
+    </div>
+  </div>
+</div>

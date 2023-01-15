@@ -1,0 +1,235 @@
+<head>
+  <link rel="stylesheet" type="text/css" href="reserve.css" />
+  <link
+    href="https://fonts.googleapis.com/icon?family=Material+Icons"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+  <script>
+    const logout = () => {window.location.href="http://localhost:3000/logout"};
+    const reserve = () => {window.location.href="http://localhost:3000/reserve"};
+    const reserveinfo=() => {window.location.href="http://localhost:3000/reserveinfo"}; 
+  </script>
+</head>
+
+<div class="header">
+  <div class="header-logo">
+    <span class="logo-text">CAR DEALER</span>
+  </div>
+
+  <div class="header-info">
+    <span class="header-info_title"> 원하는 자동차를 쉽게 예약하는 곳 CAR-DEALER!
+  </div>
+</div>
+
+<div class="content">
+  <div class="side">
+    <div class="side-frame">
+      <div class="side-frame_id">
+        <div class="userinfo">{{user}}</div>
+        <button class="logout" onclick="logout()">Logout</button>
+      </div>
+    </div>
+    <div class="side-menu">
+      <div class="side-menu_list" onclick="reserve()">
+        <span>예약하기</span>
+        <span class="material-icons">add</span>
+      </div>
+      <div class="side-menu_list" onclick="reserveinfo()">
+        <span>예약 조회 및 취소</span>
+        <span class="material-icons">add</span>
+      </div>
+    </div>
+  </div>
+  <div class="main">
+    <span class="main-top_title">예약 가능 차량 확인하기</span>
+    <p class="sTitle"> <span>회원 ID : {{user}}</span></p>
+     <div class="main-top">
+      <span class="main-top_title">CAR</span>
+       <div class="main-top_table">
+        <table>
+        <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =15%;">차대번호</th>
+            <th scope="col" , style="width: =15%;">가격</th>
+            <th scope="col" , style="width: =5%;">모델</th>
+            <th scope="col" , style="width: =5%;">색상</th>
+            <th scope="col" , style="width: =5%;">연료</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">연비</th>
+            <th scope="col" , style="width: =10%;">인승</th>
+            <th scope="col" , style="width: =10%;">최대 속도</th>
+            <th scope="col" , style="width: =5%;">배기량</th>
+            <th scope="col" , style="width: =10%;">예약하기</th>
+        </tr>
+         {{#carInfo}}
+          <form method="post">
+           <tr>
+             <td>{{vin}}</td>
+             <td>{{price}}원</td>
+             <td>{{model}}</td>
+             <td>{{color}}</td>
+             <td>{{fuel}}</td>
+             <td>{{brand}}</td>
+             <td>{{fuel_efficiency}}</td>
+             <td>{{no_seats}}인승</td>
+             <td>{{max_speed}}km/h</td>
+             <td>{{engine_size}}cc</td>
+             <td>
+                <button
+                 style="margin-left: 10px;"
+                 name="reserveBtn"
+                 type="submit"
+                 class="reserveBtn"
+                 value="{{vin}}"
+                 formaction="/reserve"
+                 >
+                 예약
+                </button></td>
+           </tr>
+          </form>
+         {{/carInfo}}
+        </table>
+       </div>
+     </div>
+
+     <div class="main-top">
+      <span class="main-top_title">TRUCK</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+                <th scope="col" , style="width: =15%;">차대번호</th>
+                <th scope="col" , style="width: =15%;">가격</th>
+                <th scope="col" , style="width: =5%;">모델</th>
+                <th scope="col" , style="width: =5%;">색상</th>
+                <th scope="col" , style="width: =10%;">연료</th>
+                <th scope="col" , style="width: =10%;">브랜드</th>
+                <th scope="col" , style="width: =10%;">연비</th>
+                <th scope="col" , style="width: =10%;">축 수</th>
+                <th scope="col" , style="width: =10%;">톤 수</th>
+                <th scope="col" , style="width: =10%;">예약하기</th>
+          </tr>
+          {{#truckInfo}}
+           <form method="post">
+            <tr>
+             <td>{{vin}}</td>
+             <td>{{price}}원</td>
+             <td>{{model}}</td>
+             <td>{{color}}</td>
+             <td>{{fuel}}</td>
+             <td>{{brand}}</td>
+             <td>{{fuel_efficiency}}</td>
+             <td>{{no_of_axles}}</td>
+             <td>{{tonnage}}톤</td>
+             <td>
+                <button
+                    style="margin-left: 10px;"
+                    name="reserveBtn"
+                    type="submit"
+                    class="reserveBtn"
+                    value="{{vin}}"
+                    formaction="/reserve"
+                >
+                예약
+                </button></td>
+            </tr>
+           </form>
+          {{/truckInfo}}
+          </table>
+        </div>
+    </div>
+
+    <div class="main-top">
+      <span class="main-top_title">SUV</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =15%;">차대번호</th>
+            <th scope="col" , style="width: =15%;">가격</th>
+            <th scope="col" , style="width: =5%;">모델</th>
+            <th scope="col" , style="width: =5%;">색상</th>
+            <th scope="col" , style="width: =10%;">연료</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">연비</th>
+            <th scope="col" , style="width: =10%;">인승</th>
+            <th scope="col" , style="width: =10%;">크기</th>
+            <th scope="col" , style="width: =10%;">예약하기</th>
+          </tr>
+            {{#suvInfo}}
+             <form method="post">
+                <tr>
+                    <td>{{vin}}</td>
+                    <td>{{price}}원</td>
+                    <td>{{model}}</td>
+                    <td>{{color}}</td>
+                    <td>{{fuel}}</td>
+                    <td>{{brand}}</td>
+                    <td>{{fuel_efficiency}}</td>
+                    <td>{{no_seats}}인승</td>
+                    <td>{{size}}</td>
+                    <td>
+                      <button
+                        style="margin-left: 10px;"
+                        name="reserveBtn"
+                        type="submit"
+                        class="reserveBtn"
+                        value="{{vin}}"
+                        formaction="/reserve"
+                      >
+                        예약
+                      </button></td>
+                </tr>
+             </form>
+            {{/suvInfo}}
+          </table>
+        </div>
+    </div>
+
+    <div class="main-top">
+      <span class="main-top_title">BUS</span>
+        <div class="main-top_table">
+          <table>
+          <tr style="background-color: #f4e34d;">
+            <th scope="col" , style="width: =15%;">차대번호</th>
+            <th scope="col" , style="width: =15%;">가격</th>
+            <th scope="col" , style="width: =5%;">모델</th>
+            <th scope="col" , style="width: =5%;">색상</th>
+            <th scope="col" , style="width: =5%;">연료</th>
+            <th scope="col" , style="width: =10%;">브랜드</th>
+            <th scope="col" , style="width: =10%;">연비</th>
+            <th scope="col" , style="width: =10%;">인승</th>
+            <th scope="col" , style="width: =10%;">크기</th>
+            <th scope="col" , style="width: =5%;">층수</th>
+            <th scope="col" , style="width: =10%;">예약하기</th>
+          </tr>
+            {{#busInfo}}
+              <form method="post">
+                  <tr>
+                    <td>{{vin}}</td>
+                    <td>{{price}}원</td>
+                    <td>{{model}}</td>
+                    <td>{{color}}</td>
+                    <td>{{fuel}}</td>
+                    <td>{{brand}}</td>
+                    <td>{{fuel_efficiency}}</td>
+                    <td>{{no_seats}}인승</td>
+                    <td>{{size}}</td>
+                    <td>{{layer}}층</td>
+                    <td>
+                      <button
+                        style="margin-left: 10px;"
+                        name="reserveBtn"
+                        type="submit"
+                        class="reserveBtn"
+                        value="{{vin}}"
+                        formaction="/reserve"
+                      >
+                        예약
+                      </button></td>
+                  </tr>
+              </form>
+            {{/busInfo}}
+          </table>
+        </div>
+    </div>
+  </div>
+</div>
